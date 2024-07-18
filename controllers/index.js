@@ -6,7 +6,7 @@ class Controller {
     
     static async homePage(req,res) {
         try {
-            const {userId} = req.session.user
+            const {userId} = req.session
             let posts = await Post.findAll({
                 include:{
                     model: User,
@@ -38,7 +38,7 @@ class Controller {
 
     static async addNewPost(req,res){
         try {
-            const { userId } = req.session.user
+            const { userId } = req.session
             const {content} = req.body
 
             await Post.create({content, userId })
@@ -79,11 +79,46 @@ class Controller {
             avatarUrl
           })
 
+          
           res.redirect('/')
         //   console.log(findUser);
         } catch (error) {
             console.log(error);
            res.send(error.message) 
+        }
+    }
+
+    static async editProfile(req,res) {
+        try {
+
+            const {id} = req.params
+            let profile = await Profile.findByPk(id)
+
+            // console.log(profile);
+            // console.log(id);
+            res.render('profileFormEdit',{profile})
+
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async postEditProfile(req,res){
+        try {
+            const{id} = req.params
+            const{avatarUrl, fullName,bio, location} = req.body
+
+            let userProfile = await Profile.findOne({where: {UserId: id}})
+            await userProfile.update({
+                avatarUrl,
+                fullName,
+                bio,
+                location
+              })
+            // console.log(data);
+            res.redirect('/')
+        } catch (error) {
+            res.send(error.message)
         }
     }
 }

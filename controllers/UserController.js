@@ -42,10 +42,12 @@ class UserController {
       if (data) {
         const isValidPassword = await bcrypt.compare(password, data.password);
         if (isValidPassword) {
-            req.session.user = {
-                userId: data.id,
-                role: data.role
-            }
+            // req.session.user = {
+            //     userId: data.id,
+            //     role: data.role
+            // }
+            req.session.userId = data.id
+            req.session.role = data.role
 
             if(!profileData.fullName){
                 res.redirect(`/profile/${req.session.user.userId}`)
