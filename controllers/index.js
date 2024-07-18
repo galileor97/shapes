@@ -57,7 +57,7 @@ class Controller {
                 const command = new PutObjectCommand(params);
                 await s3Client.send(command);
     
-                // Use your custom domain here
+
                 image = `https://gallery.galileor.xyz/${fileName}`;
             }
     
@@ -138,8 +138,7 @@ class Controller {
             const {id} = req.params
             let profile = await Profile.findByPk(id)
 
-            // console.log(profile);
-            // console.log(id);
+
             res.render('profileFormEdit',{profile})
 
         } catch (error) {
@@ -159,7 +158,7 @@ class Controller {
                 bio,
                 location
               })
-            // console.log(data);
+
             res.redirect('/')
         } catch (error) {
             res.send(error.message)
