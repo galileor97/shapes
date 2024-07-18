@@ -19,7 +19,7 @@ class UserController {
   }
   static async postSignUp(req, res) {
     try {
-      // console.log(req.body);
+      console.log(req.body);
       const { username, email, password } = req.body;
       const new_user = await User.create({ username, email, password });
       await Profile.create({ UserId: new_user.id })
