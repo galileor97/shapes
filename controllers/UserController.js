@@ -37,7 +37,12 @@ class UserController {
       if (data) {
         const isValidPassword = await bcrypt.compare(password, data.password);
         if (isValidPassword) {
-          req.session.userId = data.id
+
+            req.session.user = {
+                id: data.id,
+                role: data.role
+            } 
+
           res.redirect("/");
         } else {
           const error = "invalid password";

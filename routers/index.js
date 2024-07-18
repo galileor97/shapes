@@ -19,6 +19,12 @@ router.use((req, res, next) => {
 router.get('/logout',User.logout) 
 router.get('/', Controller.homePage)
 
+router.post('/', Controller.addNewPost)
+router.get('/signup', User.signUp)
+router.post('/signup', User.postSignUp)
+
+
+
 
 
 module.exports = router;
