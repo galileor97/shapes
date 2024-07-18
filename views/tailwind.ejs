@@ -1,26 +1,28 @@
 <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'SuisseIntlMono';
-            src: url('./assets/Suisse Int\'l Mono Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SuisseIntlMono';
-            src: url('./assets/Suisse Int\'l Mono Thin.otf') format('opentype');
-            font-weight: 100;
-            font-style: normal;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'suisse-mono': ['SuisseIntlMono', 'monospace'],
-                    },
-                }
+<style>
+    @font-face {
+        font-family: 'SuisseIntlMonoRegular';
+        src: url('./assets/Suisse Int\'l Mono Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'SuisseIntlMonoThin';
+        src: url('./assets/Suisse Int\'l Mono Thin.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+</style>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'suisse-mono-regular': ['SuisseIntlMonoRegular', 'monospace'],
+                    'suisse-mono-thin': ['SuisseIntlMonoThin', 'monospace'],
+                },
             }
         }
-    </script>
+    }
+</script>
