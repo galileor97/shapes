@@ -1,0 +1,12 @@
+Access Key ID
+39766fd19d585c516c0594bb7a9929e2
+
+
+Secret Access Key
+42bd7008d36e1cc6e8d3b23d5b2738156cbc009e90e04722bfa4c5a9d7961c61
+
+
+Use jurisdiction-specific endpoints for S3 clients:
+DefaultEuropean Union (EU)
+https://f37c7a796700ecca76487a230dc67a1f.r2.cloudflarestorage.com
+Click to copy
