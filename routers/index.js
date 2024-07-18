@@ -18,6 +18,9 @@ router.use((req, res, next) => {
 });
 router.get('/logout',User.logout) 
 router.get('/', Controller.homePage)
+
+   
+
 router.get('/profile/:id', Controller.getProfile)
 router.post('/profile/:id', Controller.postProfile)
 router.get('/profile/:id/edit', Controller.getProfile)
@@ -26,6 +29,7 @@ router.post('/profile/:id/edit', Controller.postProfile)
 router.post('/', Controller.addNewPost)
 router.get('/signup', User.signUp)
 router.post('/signup', User.postSignUp)
+
 
 
 
