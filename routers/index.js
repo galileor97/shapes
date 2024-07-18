@@ -5,6 +5,7 @@ const User = require('../controllers/UserController');
 
 //auth
 router.get('/signin', User.signIn)
+router.post('/signin', User.postSignIn)
 router.get('/', Controller.homePage)
 router.get('/signup', User.signUp)
 router.post('/signup', User.postSignUp)
