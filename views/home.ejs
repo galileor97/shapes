@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen bg-white">
+        <!-- Left Sidebar (increased from w-64 to w-80) -->
+        <aside class="w-80  p-6">
+            <div class="mb-8">
+                <button class="bg-gray-900 text-white rounded-full px-6 py-3 w-full text-lg">Post</button>
+            </div>
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#" class="flex items-center text-gray-700 hover:bg-gray-100 rounded p-3 text-lg">
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        Home
+                    </a></li>
+                    <li><a href="#" class="flex items-center text-gray-700 hover:bg-gray-100 rounded p-3 text-lg">
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"></path>
+                        </svg>
+                        Inspiration
+                    </a></li>
+                    <!-- Add more menu items as needed -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Middle Content Area -->
+        <main class="flex-1 overflow-y-auto">
+            <div class="p-8">
+                <div class="flex items-center mb-8">
+                    <div class="flex-1">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center text-white mr-3 text-2xl">😀</div>
+                            <input type="text" placeholder="What's happening?" class="bg-gray-100 rounded-full px-6 py-3 w-full text-lg" />
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <button class="bg-gray-200 text-gray-700 rounded px-6 py-3 text-lg">Schedule</button>
+                        <button class="bg-gray-900 text-white rounded px-6 py-3 ml-3 text-lg">Post</button>
+                    </div>
+                </div>
+
+                <!-- Post -->
+                <div class="bg-white rounded-lg shadow-lg mb-8">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/48" alt="User" class="w-12 h-12 rounded-full mr-3">
+                            <div>
+                                <h3 class="font-bold text-lg">Fons Mans</h3>
+                                <p class="text-gray-500">4 mins ago</p>
+                            </div>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4">Source of Light</h2>
+                        <img src="https://via.placeholder.com/600x400" alt="Post image" class="w-full rounded-lg mb-6">
+                        <div class="flex items-center text-gray-500">
+                            <span class="mr-6">4 likes</span>
+                            <span class="mr-6">16 comments</span>
+                            <span>405 views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg mb-8">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/48" alt="User" class="w-12 h-12 rounded-full mr-3">
+                            <div>
+                                <h3 class="font-bold text-lg">Fons Mans</h3>
+                                <p class="text-gray-500">4 mins ago</p>
+                            </div>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4">Source of Light</h2>
+                        <img src="https://via.placeholder.com/600x400" alt="Post image" class="w-full rounded-lg mb-6">
+                        <div class="flex items-center text-gray-500">
+                            <span class="mr-6">4 likes</span>
+                            <span class="mr-6">16 comments</span>
+                            <span>405 views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Info Section (increased from w-80 to w-96) -->
+        <aside class="w-96 border-l border-gray-200 p-6">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-6">Featured creators</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/40" alt="Creator" class="w-10 h-10 rounded-full mr-3">
+                            <span class="text-lg">Fons Mans</span>
+                        </div>
+                        <button class="text-blue-500 text-lg">Follow</button>
+                    </li>
+                    <!-- Add more featured creators -->
+                </ul>
+                <a href="#" class="text-blue-500 block mt-4 text-lg">Show more</a>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold mb-6">Trending work</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-blue-500 aspect-square rounded-lg flex items-center justify-center text-white text-5xl">1</div>
+                    <div class="bg-gray-200 aspect-square rounded-lg"></div>
+                    <!-- Add more trending work items -->
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

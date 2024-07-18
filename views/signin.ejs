@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<%- include('tailwind') -%>
+<body>
+    <!-- Navbar -->
+    <div class="mb-20">
+        <nav class="bg-white  fixed w-full z-20 top-0 start-0 ">
+            <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-5 px-10">
+                <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 98 33"
+                        xmlns="http://www.w3.org/2000/svg" style="display:block" width="82" height="33">
+                        <path clip-rule="evenodd"
+                            d="m64.8935 16.456c0 9.0884-7.3676 16.456-16.456 16.456s-16.456-7.3676-16.456-16.456c0-9.08839 7.3676-16.456 16.456-16.456s16.456 7.36761 16.456 16.456zm-47.9911-14.88859c.3016-.52241 1.0556-.52241 1.3572 0l16.7962 29.09189c.3017.5224-.0754 1.1754-.6786 1.1754h-33.592412c-.603231 0-.980249-.653-.678634-1.1754zm51.7119-.588048c-.8655 0-1.5672.701678-1.5672 1.567238v27.8185c0 .8656.7017 1.5673 1.5672 1.5673h27.8185c.8656 0 1.5673-.7017 1.5673-1.5673v-27.8185c0-.86556-.7017-1.567238-1.5673-1.567238z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                    </svg>
+                    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                        <a href="/signup">
+                            <button type="button"
+                                class="text-white font-suisse-mono font-normal bg-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-grey-300 focus:ring-4 focus:outline-none focus:ring-grey-300 font-medium rounded-full text-sm px-4 py-3 text-center ">
+                                Sign up</button>
+                        </a>
+                    </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Form -->
+    <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-5 px-10">
+
+            <!-- Left section with larger image -->
+            <div class="w-2/3 bg-[#f2f2f2] rounded-lg flex justify-center items-center h-full">
+                <!-- Image container -->
+                <div class="h-full w-full overflow-hidden p-8">
+                    <img src="https://f8n-production.imgix.net/worlds/arcea82yd.jpg?auto=format%2Ccompress&q=70&cs=srgb&w=2000&fit=fill&fnd_key=v1" 
+                         alt="Art Market" 
+                         class="w-full h-full object-cover rounded-lg">
+                </div>
+            </div>
+          
+            <!-- Right section with form -->
+            <div class="w-1/3 p-8 pl-20 flex flex-col justify-center">
+              <form class="space-y-6">
+                <h2 class="text-3xl font-suisse-mono font-bold mb-6">Sign In</h2>
+                <input type="text" placeholder="Username" required class="w-full p-4 bg-[#f2f2f2] font-suisse-mono font-normal rounded-full">
+                <input type="password" placeholder="Password" required class="w-full font-suisse-mono font-thin p-4 bg-[#f2f2f2] rounded-full">
+                <button type="submit" class="font-suisse-mono w-full bg-black text-white p-3 rounded-full hover:bg-grey-700">Login</button>
+                <p class="text-center font-suisse-mono font-normal">Don't have an account? <a href="/signup" class="font-suisse-mono font-normal text-blue-600 hover:underline">Sign up</a></p>
+              </form>
+
+          </div>
+    </div>
+</body>
+</html>
