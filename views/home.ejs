@@ -90,11 +90,12 @@
                                     </div>
                                 </div>
                                 <h2 class="text-lg font-bold mb-4"><%= post.content %></h2>
-                                <img src="<%= post.image %>" alt="Post image"
-                                    class="w-full rounded-lg mb-6">
-                                <div class="flex items-center text-gray-500">
+                                <% if (post.image) { %>
+                                    <img src="<%= post.image %>" alt="Post image" class="w-full rounded-lg mb-6">
+                                <% } %>
+                                <!-- <div class="flex items-center text-gray-500">
                                     <span class="mr-6">4 votes</span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <% }) %>

@@ -1,5 +1,5 @@
 const  bcrypt  = require('bcryptjs')
-const { User } = require('../models/index');
+const { User, Profile } = require('../models/index');
 class UserController {
   static async signIn(req, res) {
     try {
@@ -21,8 +21,10 @@ class UserController {
     try {
       // console.log(req.body);
       const { username, email, password } = req.body;
-      await User.create({ username, email, password });
-      res.redirect("/");
+      const new_user = await User.create({ username, email, password });
+      await Profile.create({ UserId: new_user.id })
+
+      res.redirect("/signin");
     } catch (error) {
       res.send(error.message);
     }
@@ -37,12 +39,10 @@ class UserController {
       if (data) {
         const isValidPassword = await bcrypt.compare(password, data.password);
         if (isValidPassword) {
-
             req.session.user = {
-                id: data.id,
+                userId: data.id,
                 role: data.role
             } 
-
           res.redirect("/");
         } else {
           const error = "invalid password";

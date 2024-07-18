@@ -9,7 +9,10 @@ router.post("/signup", User.postSignUp);
 router.get('/signin', User.signIn)
 router.post('/signin', User.postSignIn)
 router.use((req, res, next) => {
-    if (!req.session.userId) {
+    console.log('====================================');
+    console.log(req.session.user);
+    console.log('====================================');
+    if (!req.session.user.userId) {
         const error = 'you have to sign in'
         res.redirect(`/signin?error=${error}`)
     }else{
