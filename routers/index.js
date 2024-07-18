@@ -9,9 +9,6 @@ router.post("/signup", User.postSignUp);
 router.get('/signin', User.signIn)
 router.post('/signin', User.postSignIn)
 router.use((req, res, next) => {
-    console.log('====================================');
-    console.log(req.session.user);
-    console.log('====================================');
     if (!req.session.user.userId) {
         const error = 'you have to sign in'
         res.redirect(`/signin?error=${error}`)
@@ -21,6 +18,8 @@ router.use((req, res, next) => {
 });
 router.get('/logout',User.logout) 
 router.get('/', Controller.homePage)
+router.get('/profile/:id', Controller.getProfile)
+router.post('/profile/:id', Controller.postProfile)
 
 router.post('/', Controller.addNewPost)
 router.get('/signup', User.signUp)
