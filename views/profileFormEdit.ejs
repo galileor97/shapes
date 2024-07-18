@@ -92,9 +92,10 @@
 
                     <!-- Post -->
                     <form class="space-y-3" method="post" action="/profile/<%= profile.id %>/edit">
-                        <h2 class="text-3xl font-bold mb-6">Edit profile</h2>
                         <img src="<%= profile.avatarUrl %>" alt="" class="rounded-full">
-                        <label class="text-lg cursor-pointer pt-10">Avatar Url</label>
+                        <h2 class="text-3xl font-bold mb-6">Profile data</h2>
+                        
+                        <label class="text-lg cursor-pointer mt-10">Avatar Url</label>
                         <input name="avatarUrl" value="<%= profile.avatarUrl %>" type="text" placeholder="Name" required
                             class="w-full p-4 bg-[#f2f2f2] rounded-full">
                             <label class="text-lg cursor-pointer">Full Name</label>

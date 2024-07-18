@@ -1,11 +1,15 @@
-const {User, Profile, Post, Hashtag, PostHashtag} = require('../models/index')
-const createdDate = require('../helper/createdDate')
+const { PutObjectCommand } = require("@aws-sdk/client-s3");
+const s3Client = require('../r2config');
+const { User, Profile, Post, Hashtag, PostHashtag } = require('../models/index');
+const createdDate = require('../helper/createdDate');
 
 
 class Controller {
     
     static async homePage(req,res) {
         try {
+            let hashtags = await Hashtag.findAll()
+            
             const {userId} = req.session
             let posts = await Post.findAll({
                 include:{
@@ -17,36 +21,53 @@ class Controller {
                 order: [['createdAt', 'DESC']]
             })
 
-           let data =  posts.map(post=> {
-            return {
-                id: post.id,
-                avatar:post.User.Profile.avatarUrl,
-                name:post.User.Profile.fullName,
-                content:post.content,
-                image:post.image,
-                published: createdDate(post.createdAt)
-            }
-           })
+            let data = posts.map(post => {
+                return {
+                    id: post.id,
+                    avatar: post.User.Profile.avatarUrl,
+                    name: post.User.Profile.fullName,
+                    content: post.content,
+                    imageUrl: post.image,  
+                    published: createdDate(post.createdAt)
+                }
+            });
 
             // console.log(data);
             res.render('home',{data, userId})
         } catch (error) {
-
             res.send(error.message)
         }
     }
 
-    static async addNewPost(req,res){
+    static async addNewPost(req, res) {
         try {
-            const { userId } = req.session
-            const {content} = req.body
-
-            await Post.create({content, userId })
-
-            res.redirect('/')
+            const { userId } = req.session;
+            const { content } = req.body;
+            let image = null;
+    
+            if (req.file) {
+                const fileName = `${Date.now()}-${encodeURIComponent(req.file.originalname)}`;
+                const params = {
+                    Bucket: process.env.R2_BUCKET_NAME,
+                    Key: fileName,
+                    Body: req.file.buffer,
+                    ContentType: req.file.mimetype,
+                };
+    
+                const command = new PutObjectCommand(params);
+                await s3Client.send(command);
+    
+                // Use your custom domain here
+                image = `https://gallery.galileor.xyz/${fileName}`;
+            }
+    
+            const newPost = await Post.create({ content, userId, image });
+            console.log('New post:', newPost);
+    
+            res.redirect('/');
         } catch (error) {
-            console.log(error);
-            res.send(error.message)
+            console.error('Error in addNewPost:', error);
+            res.status(500).send(error.message);
         }
     }
 

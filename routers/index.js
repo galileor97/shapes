@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const Controller = require('../controllers');
 const User = require('../controllers/UserController');
-
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 
 //auth
 router.get("/signup", User.signUp);
@@ -23,7 +24,7 @@ router.post('/profile/:id', Controller.postProfile)
 router.get('/profile/:id/edit', Controller.editProfile)
 router.post('/profile/:id/edit', Controller.postEditProfile)
 
-router.post('/', Controller.addNewPost)
+router.post('/',upload.single('postImage'), Controller.addNewPost)
 router.get('/signup', User.signUp)
 router.post('/signup', User.postSignUp)
 
