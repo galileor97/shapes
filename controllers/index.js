@@ -71,18 +71,41 @@ class Controller {
         }
     }
 
-    static async getProfile(req,res){
+    static async getProfile(req, res) {
         try {
-            const {id} = req.params
-
-        //   let findUser = await User.findOne({
-        //     include:Profile,
-        //     where:{id}
-        //   })  
-        //   console.log(findUser);
-           res.render('profileForm', {id}) 
+            const { id } = req.params;
+    
+            let user = await User.findByPk(id, {
+                include: Profile
+            });
+            
+            // console.log(user);
+            const accountAge = user.getAccountAge();
+    
+            
+            const posts = await Post.findAll({
+                where: { userId: id },
+                order: [['createdAt', 'DESC']]
+            });
+    
+            const formattedPosts = posts.map(post => ({
+                id: post.id,
+                content: post.content,
+                image: post.image,
+                published: createdDate(post.createdAt)
+            }));
+    
+            console.log(formattedPosts);
+            
+            res.render('profileForm', { 
+                id, 
+                user,
+                profile: user.Profile,
+                posts:formattedPosts,
+                accountAge
+            });
         } catch (error) {
-            res.send(error.message)
+            res.send(error.message);
         }
     }
 

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Post.belongsTo(models.User, { foreignKey: 'userId' });
       Post.belongsToMany(models.Hashtag, { 
-        through: 'PostHashtag',  // This is the name of the junction table
+        through: 'PostHashtag',  
         foreignKey: 'postId',
         otherKey: 'hashtagId'
       });
