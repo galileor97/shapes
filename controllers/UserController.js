@@ -31,42 +31,46 @@ class UserController {
   }
   static async postSignIn(req, res) {
     try {
-    //   console.log(req.body);
       const { username, password } = req.body;
-      // console.log(req.body);
-      let data = await User.findOne({ where: {username} })
-      let profileData = await Profile.findOne({ where: {UserId: data.id}})
-
-
-      // console.log( data);
-      if (data) {
-        const isValidPassword = await bcrypt.compare(password, data.password);
-        if (isValidPassword) {
-            // req.session.user = {
-            //     userId: data.id,
-            //     role: data.role
-            // }
-            req.session.userId = data.id
-            req.session.role = data.role
-
-            if(!profileData.fullName){
-                res.redirect(`/profile/${req.session.user.userId}`)
-            }else {
-                res.redirect("/");
-            } 
-        } else {
-          const error = "invalid password";
-          res.redirect(`/signin?error=${error}`);
-        }
-      } else {
-        const error = "invalid username/password";
-        res.redirect(`/signin?error=${error}`);
+      
+      let user = await User.findOne({ where: { username } });
+  
+      if (!user) {
+        return res.redirect('/signin?error=' + encodeURIComponent('Invalid username/password'));
       }
+  
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      
+      if (!isValidPassword) {
+        return res.redirect('/signin?error=' + encodeURIComponent('Invalid password'));
+      }
+  
+
+      req.session.userId = user.id;
+      req.session.role = user.role;
+  
+
+      req.session.save(async (err) => {
+        if (err) {
+          console.error('Session save error:', err);
+          return res.status(500).send('Error saving session');
+        }
+  
+        let profileData = await Profile.findOne({ where: { UserId: user.id } });
+  
+        if (!profileData || !profileData.fullName) {
+          res.redirect(`/profile/${user.id}`);
+        } else {
+          res.redirect('/');
+        }
+      });
+  
     } catch (error) {
-        // console.log(error);
-      res.send(error.message);
+      console.error('Login error:', error);
+      res.status(500).send('An error occurred during login');
     }
   }
+
   static async logout(req,res){
     try {
       await req.session.destroy()
