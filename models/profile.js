@@ -18,10 +18,13 @@ module.exports = (sequelize, DataTypes) => {
     fullName: DataTypes.STRING,
     bio: DataTypes.STRING,
     location: DataTypes.STRING,
-    avatarUrl: DataTypes.STRING
+    avatarUrl: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Profile',
   });
+
+
   return Profile;
 };
