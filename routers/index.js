@@ -7,6 +7,7 @@ const User = require('../controllers/UserController');
 router.get('/signin', User.signIn)
 router.post('/signin', User.postSignIn)
 router.get('/', Controller.homePage)
+router.post('/', Controller.addNewPost)
 router.get('/signup', User.signUp)
 router.post('/signup', User.postSignUp)
 

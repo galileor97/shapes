@@ -20,7 +20,7 @@ module.exports = {
         }
       },
       image: {
-        type: Sequelize.BLOB
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
