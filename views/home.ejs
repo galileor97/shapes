@@ -55,7 +55,7 @@
                                 </svg>
                                 Inspiration
                             </a></li>
-                        <li><a href="/profile/<%= userId %>/edit"
+                        <li><a href="/profile/<%= userId %>"
                                 class="flex items-center hover:bg-gray-100 rounded px-3 py-4  text-lg">
                                 <svg width="32px" height="32px" stroke-width="1.5" class="mr-4" viewBox="0 0 24 24"
                                     fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
@@ -216,7 +216,6 @@
                         <div class="bg-gray-200 aspect-square rounded-lg"></div>
                         <img src="https://cdn.dribbble.com/userupload/15646229/file/original-e8f5bac439531371fe81c998328ac5bf.jpg?resize=1504x1128"
                             class="object-cover rounded-lg" alt="">
-                        <!-- Add more trending work items -->
                     </div>
                 </div>
             </aside>
@@ -229,7 +228,7 @@
             const whatsHappeningInput = document.getElementById('whatsHappening');
 
             createNewPostButton.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent any default action
+                e.preventDefault(); 
                 whatsHappeningInput.focus();
                 whatsHappeningInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
