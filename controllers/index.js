@@ -13,7 +13,8 @@ class Controller {
                     include:{
                         model:Profile
                     }
-                }
+                },
+                order: [['createdAt', 'DESC']]
             })
 
            let data =  posts.map(post=> {
@@ -53,12 +54,12 @@ class Controller {
         try {
             const {id} = req.params
 
-          let findUser = await User.findOne({
-            include:Profile,
-            where:{id}
-          })  
-          console.log(findUser);
-           res.render('profile') 
+        //   let findUser = await User.findOne({
+        //     include:Profile,
+        //     where:{id}
+        //   })  
+        //   console.log(findUser);
+           res.render('profileForm', {id}) 
         } catch (error) {
             res.send(error.message)
         }
@@ -66,12 +67,23 @@ class Controller {
 
     static async postProfile(req,res){
         try {
-            const {id} = req.session.user
+            const {id} = req.params
+            const {fullName, bio, location, avatarUrl} = req.body
 
-          let findUser = await User.findByPk(id)  
-          console.log(findUser);
+          let userProfile = await Profile.findOne({where: {UserId: id}})
+
+          await userProfile.update({
+            fullName,
+            bio,
+            location,
+            avatarUrl
+          })
+
+          res.redirect('/')
+        //   console.log(findUser);
         } catch (error) {
-           res.send(error) 
+            console.log(error);
+           res.send(error.message) 
         }
     }
 }

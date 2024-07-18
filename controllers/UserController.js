@@ -35,6 +35,9 @@ class UserController {
       const { username, password } = req.body;
       // console.log(req.body);
       let data = await User.findOne({ where: {username} })
+      let profileData = await Profile.findOne({ where: {UserId: data.id}})
+
+
       // console.log( data);
       if (data) {
         const isValidPassword = await bcrypt.compare(password, data.password);
@@ -42,8 +45,13 @@ class UserController {
             req.session.user = {
                 userId: data.id,
                 role: data.role
+            }
+
+            if(!profileData.fullName){
+                res.redirect(`/profile/${req.session.user.userId}`)
+            }else {
+                res.redirect("/");
             } 
-          res.redirect("/");
         } else {
           const error = "invalid password";
           res.redirect(`/signin?error=${error}`);
