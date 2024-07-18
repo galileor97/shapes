@@ -15,30 +15,36 @@ class Controller {
                 }
             })
 
-           let data =  posts.map(post=>({
+           let data =  posts.map(post=> {
+            return {
                 avatar:post.User.Profile.avatarUrl,
                 name:post.User.Profile.fullName,
                 content:post.content,
                 image:post.image,
                 published: createdDate(post.createdAt)
-
-
-            }))
+            }
+           })
 
             console.log(data);
             res.render('home',{data})
         } catch (error) {
+            console.log('====================================');
+            console.log(error);
+            console.log('====================================');
             res.send(error.message)
         }
     }
 
     static async addNewPost(req,res){
         try {
-            // console.log(req.s, "====");
+            const { userId } = req.session.user
             const {content} = req.body
-            await Post.create({content})
+
+            await Post.create({content, userId })
+
             res.redirect('/')
         } catch (error) {
+            console.log(error);
             res.send(error.message)
         }
     }
