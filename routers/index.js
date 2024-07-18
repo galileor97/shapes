@@ -18,7 +18,7 @@ router.use((req, res, next) => {
 });
 router.get('/logout',User.logout) 
 router.get('/', Controller.homePage)
-
+   
 
 
 module.exports = router;
