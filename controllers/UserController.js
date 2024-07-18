@@ -31,13 +31,13 @@ class UserController {
     try {
     //   console.log(req.body);
       const { username, password } = req.body;
-      console.log(req.body);
+      // console.log(req.body);
       let data = await User.findOne({ where: {username} })
-      console.log( data);
+      // console.log( data);
       if (data) {
         const isValidPassword = await bcrypt.compare(password, data.password);
-        console.log(isValidPassword,password);
         if (isValidPassword) {
+          req.session.userId = data.id
           res.redirect("/");
         } else {
           const error = "invalid password";
@@ -51,6 +51,14 @@ class UserController {
         // console.log(error);
       res.send(error.message);
     }
+  }
+  static async logout(req,res){
+    try {
+      await req.session.destroy()
+      res.redirect('/signin')
+    } catch (error) {
+      res.send(error.message)
+    } 
   }
 }
 
