@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    role: DataTypes.STRING
   }, {
     hooks:{
       beforeCreate(instance,option){
@@ -31,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
   User.beforeCreate((user, options) => {
-    user.role = 'member';
+    user.role = "member";
   })
   return User;
 };
